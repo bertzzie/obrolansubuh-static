@@ -89,6 +89,18 @@
         	font-weight: bold;
         }
 
+		/* 
+			Temporary until polymer supports freer binding.
+			We want to do:
+
+			    <span>by: {{item.author}}</span>
+
+			so the "by" can be internationalized via parameter.
+		*/
+        .post-author:before {
+        	content: "by: ";
+        }
+
         .post-content {
         	width: 75%;
         	height: 100%;
@@ -126,6 +138,7 @@
 					<paper-material elevation="1" class="post-card">
 						<aside class="post-info">
 							<span class="post-time">[[getDateDOM(item.CreatedAt)]]</span>
+							<span class="post-author">{{ item.Author }}</span>
 
 							<ul class="actions">
 							    <li class="title">Post Actions</li>
