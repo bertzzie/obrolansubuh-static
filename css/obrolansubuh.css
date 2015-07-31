@@ -13,10 +13,11 @@ paper-button[raised].process {
 }
 
 paper-toast {
-	display: inline-block;
+	display: block;
 	background: #323232 none repeat scroll 0% 0%;
 	color: #F1F1F1;
-	min-height: 48px;
+	margin: 0 auto;
+	max-height: 48px;
 	min-width: 288px;
 	max-width: 60%;
 	padding: 16px 24px 12px;
@@ -25,14 +26,10 @@ paper-toast {
 	border-radius: 2px;
 	cursor: default;
 	transition: visibility 0.3s ease 0s, transform 0.3s ease 0s;
-	transform: translateX(256px) translateY(-10px);
+	transform: translateX(0) translateY(-128px);
 	position: fixed;
-	bottom: 15px;
-	left: 15px;
-}
-
-paper-toast.paper-toast-open {
-	transform: translateX(256px) translateY(-10px);
+	top: 80px;
+	left: 272px;
 }
 
 paper-toast.error {
