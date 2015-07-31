@@ -97,6 +97,11 @@ import * as OS from "./obrolansubuh"
 					var text  = jqXHR.responseJSON["message"];
 
 					ToastNotif = new OS.ToastNotification(parent, text, 5000, false);
+				},
+				error       : (jqXHR, textStatus, errorThrown) => {
+					var message = jqXHR.responseJSON["messages"][0];
+
+					ToastNotif = new OS.ToastNotification(parent, message, 5000, true);
 				}
 			}).always(() => { ToastNotif.Show(); });
 
