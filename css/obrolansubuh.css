@@ -159,11 +159,9 @@ form#login-form {
 	vertical-align: middle;
 }
 
-
-
-
-
-
+.button-link {
+	color: inherit;
+}
 
 
 
