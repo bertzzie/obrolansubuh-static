@@ -1,6 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans+Caption:700);
+@import url(//fonts.googleapis.com/css?family=EB+Garamond|PT+Sans+Caption:700);
 
-input#post-title {
+input#post-title, .title {
 	border: 0;
 	font-family: 'PT Sans Caption', sans-serif;
 	font-size: 2em;
@@ -9,11 +9,11 @@ input#post-title {
 	width: 100%;
 }
 
-input#post-title:focus {
+input#post-title:focus, .title:focus {
 	outline: none;
 }
 
-#post-creator {
+#post-creator, #aboutus-creator {
 	height: 100%;
 	max-width: 70%;
 	margin: 0 auto;
