@@ -24,3 +24,16 @@ medium-editor-polymer {
 	font-size: 1.25em;
 	line-height: 1.5em;
 }
+
+medium-editor-polymer blockquote {
+	line-height: 1.4;
+	text-align: center;
+	font-size: 32px;
+	margin: 48px -160px;
+	border: none;
+	padding: 0;
+	letter-spacing: .01rem;
+	font-weight: 400;
+	font-style: italic;
+	transition: margin 100ms;
+}
