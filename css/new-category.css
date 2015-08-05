@@ -1,6 +1,20 @@
-#new-category input[type="text"] {
+#category-image-container {
+	display: flex;
+	display: -webkit-flex;
+
+	flex-direction: column;
+	-webkit-flex-direction: column;
+
+	justify-content: center;
+	-webkit-justify-content: center;
+
+	height: 320px;
+}
+
+#category-details input[type="text"] {
 	margin: 15px auto;
 	text-align: center;
+	width: 100%;
 }
 
 input[name="heading"] {

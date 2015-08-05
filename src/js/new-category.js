@@ -108,7 +108,7 @@ import * as OS from "./obrolansubuh"
 				success: function (response) {
 					// can only upload 1 file. download will only be 1 file
 					let url = response["files"][0]["url"];
-					let newcat = document.querySelector("#new-category");
+					let cic = document.querySelector("#category-image-container");
 
 					imageURL = url;
 
@@ -116,11 +116,11 @@ import * as OS from "./obrolansubuh"
 					// So, what's safety anyway?
 					//
 					// TODO: Find a safer way to do this
-					newcat.style["background-image"]    = "url(" + url + ")";
-					newcat.style["background-position"] = "top center";
-					newcat.style["background-repeat"]   = "no-repeat";
-					newcat.style["background-size"]     = "1000px";
-					newcat.style["height"]              = "80%";
+					cic.style["background-image"]    = "url(" + url + ")";
+					cic.style["background-position"] = "top center";
+					cic.style["background-repeat"]   = "no-repeat";
+					cic.style["background-size"]     = "1000px";
+					cic.style["height"]              = "80%";
 				},
 				error: function (jqXHR, textStatus, errorMessage) {
 					let error = jqXHR.responseJSON["files"][0];
