@@ -43,7 +43,7 @@ import * as OS from "./obrolansubuh"
 		formD.append("description", document.querySelector("#category-description").value);
 
 		if (imageURL) {
-			formD.append("image", "/" + getURLPath(imageURL));
+			formD.append("image", getURLPath(imageURL));
 		}
 
 		$.ajax({
@@ -120,7 +120,6 @@ import * as OS from "./obrolansubuh"
 					cic.style["background-position"] = "top center";
 					cic.style["background-repeat"]   = "no-repeat";
 					cic.style["background-size"]     = "1000px";
-					cic.style["height"]              = "80%";
 				},
 				error: function (jqXHR, textStatus, errorMessage) {
 					let error = jqXHR.responseJSON["files"][0];
