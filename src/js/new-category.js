@@ -57,9 +57,15 @@ import * as OS from "./obrolansubuh"
 					let url = response["files"][0]["url"];
 					let newcat = document.querySelector("#new-category");
 
-					// This is not safe, but this is javascript. So, what's safety anyway?
+					// The background-image string concat is not safe, but this is javascript. 
+					// So, what's safety anyway?
+					//
 					// TODO: Find a safer way to do this
-					newcat.style["background"] = "url(" + url + ")";
+					newcat.style["background-image"]    = "url(" + url + ")";
+					newcat.style["background-position"] = "top center";
+					newcat.style["background-repeat"]   = "no-repeat";
+					newcat.style["background-size"]     = "1000px";
+					newcat.style["height"]              = "80%";
 				},
 				error: function (jqXHR, textStatus, errorMessage) {
 					let error = jqXHR.responseJSON["files"][0];
@@ -68,7 +74,7 @@ import * as OS from "./obrolansubuh"
 						error["error"],
 						5000,
 						true
-						);
+					);
 
 					ToastNotif.Show();
 				}
