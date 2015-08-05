@@ -52,6 +52,12 @@ form#login-form {
 	max-width: 480px;
 }
 
+input[type="text"].transparent {
+	background: none;
+	border: 0;
+	display: block;
+}
+
 .hidden {
 	visibility: hidden;
 }
