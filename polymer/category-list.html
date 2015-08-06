@@ -1,0 +1,40 @@
+<link rel="import" href="/public/bower_components/polymer/polymer.html">
+
+<link rel="import" href="/public/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/public/bower_components/iron-list/iron-list.html">
+<link rel="import" href="/public/bower_components/iron-image/iron-image.html">
+
+<link rel="import" href="/public/bower_components/paper-material/paper-material.html">
+
+<dom-module id="category-list">
+    <style></style>
+
+	<template>
+		<iron-ajax url="{{dataLink}}" last-response={{data}} auto on-response="handleAJAX"></iron-ajax>
+
+		<template is="dom-if" if="{{ noContributor }}">
+		    <p>{{emptyMessage}}</p>
+		</template>
+
+		<iron-list items="[[data]]" as="item">
+			<template>
+                <h1>Category List</h1>
+			</template>
+		</iron-list>
+	</template>
+
+	<script>
+	Polymer({
+		is: "category-list",
+		properties: {
+			dataLink: String,
+			emptyMessage: String
+		},
+		handleAJAX: function (request) {
+			var contributorCount = request.detail.parseResponse().length;
+
+			this.noContributor = contributorCount === 0;
+		}
+	});
+	</script>
+</dom-module>

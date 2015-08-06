@@ -1,4 +1,8 @@
 #category-image-container {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: 1000px;
+
 	display: flex;
 	display: -webkit-flex;
 
