@@ -5,6 +5,7 @@ import * as OS from "./obrolansubuh"
 
 	window.addEventListener("DOMContentLoaded", function (evt) {
 		let category = document.querySelector("select#post-category");
+		let oldCat   = document.querySelector("input#post-category-old");
 
 		$.ajax({
 			url         : "/category/list.json",
@@ -14,6 +15,7 @@ import * as OS from "./obrolansubuh"
 					let text = value["Heading"] + " - " + value["Description"];
 
 					category.options[category.options.length] = new Option(text, value["ID"]);
+					category.value = oldCat.value;
 				});
 			},
 			error       : (jqXHR, textStatus, errorThrown) => {
