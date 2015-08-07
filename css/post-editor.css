@@ -19,6 +19,15 @@ input#post-title:focus, .title:focus {
 	margin: 0 auto;
 }
 
+#category-wrapper {
+	margin: 1em auto;
+}
+
+#category-wrapper label {
+	display: block;
+	margin-bottom: 0.75em;
+}
+
 medium-editor-polymer {
 	font-family: 'EB Garamond', serif;
 	font-size: 1.25em;
