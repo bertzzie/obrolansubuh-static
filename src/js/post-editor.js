@@ -3,6 +3,28 @@ import * as OS from "./obrolansubuh"
 (function () {
 	"use strict";
 
+	window.addEventListener("DOMContentLoaded", function (evt) {
+		let category = document.querySelector("select#post-category");
+
+		$.ajax({
+			url         : "/category/list.json",
+			type        : "GET",
+			success     : (data, textStatus, jqXHR) => {
+				data.forEach(function (value, index, array) {
+					let text = value["Heading"] + " - " + value["Description"];
+
+					category.options[category.options.length] = new Option(text, value["ID"]);
+				});
+			},
+			error       : (jqXHR, textStatus, errorThrown) => {
+				var message = jqXHR.responseJSON["messages"][0];
+
+				ToastNotif = new OS.ToastNotification(parent, message, 5000, true);
+				ToastNotif.Show();
+			}
+		})
+	});
+
 	window.addEventListener("WebComponentsReady", function (evt) {
 		var mainDrawerPanel = document.querySelector("#main-drawer-panel"),
 			postTitle = document.querySelector("input#post-title"),
@@ -62,6 +84,7 @@ import * as OS from "./obrolansubuh"
 		draftButton.addEventListener("click", CreatePostSubmitListener(
 			document.querySelector("input#post-title"),
 			document.querySelector("#post-editor"),
+			document.querySelector("select#post-category"),
 			false
 		));
 	}
@@ -72,17 +95,19 @@ import * as OS from "./obrolansubuh"
 			document.querySelector("input#post-title"),
 			document.querySelector("#post-editor"),
 			document.querySelector("input#post-id"),
+			document.querySelector("select#post-category"),
 			document.querySelector("input#post-publish").value
 		));
 	}
 
-	function CreatePutSubmitListener(titleElem, editorElem, idElem, publish) {
+	function CreatePutSubmitListener(titleElem, editorElem, idElem, catElem, publish) {
 		return (evt) => {
 			var id = idElem.value,
 				data = {
 					id        : parseInt(id),
 					title     : titleElem.value,
 					content   : editorElem.getEditorContent(),
+					category  : catElem.value,
 					published : publish === "true"
 				}, 
 				parent = document.querySelector("#flash-container"),
@@ -109,10 +134,11 @@ import * as OS from "./obrolansubuh"
 		}
 	}
 
-	function CreatePostSubmitListener(titleElem, editorElem, publish) {
+	function CreatePostSubmitListener(titleElem, editorElem, catElem, publish) {
 		return (evt) => {
 			var postData = {
 				title   : titleElem.value,
+				category  : catElem.value,
 				content : editorElem.getEditorContent(),
 				publish : publish
 			}, ToastNotif;
