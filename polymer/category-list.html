@@ -7,18 +7,98 @@
 <link rel="import" href="/public/bower_components/paper-material/paper-material.html">
 
 <dom-module id="category-list">
-    <style></style>
+    <style>
+        paper-material {
+        	margin: 16px 16px 0 16px;
+        	padding: 20px;
+        }
+
+        .actions {
+        	font-size: 1.2em;
+        	list-style: none;
+        	margin: 0;
+        	padding: 0;
+        }
+
+        .actions .title {
+        	font-weight: bold;
+        	padding-left: 50px;
+        }
+
+        .actions li {
+        	margin: 5px 0;
+        	text-align: left;
+        	width: 160px;
+        }
+
+        .actions a {
+        	color: black;
+        	text-decoration: none;
+        }
+
+        .action-icon, .action-text {
+        	display: inline-block;
+        }
+
+        .action-icon {
+        	text-align: center;
+        	width: 48px;
+        	height: 20px;
+        }
+
+        .category-card {
+        	display: flex;
+        	display: -webkit-flex;
+        	justify-content: space-around;
+        	-webkit-justify-content: space-around;
+        	align-content: center;
+        	-webkit-align-content: center;
+        	align-items: flex-start;
+        	-webkit-align-items: flex-start;
+        }
+
+        .category-info {
+        	width: 80%;
+        }
+
+        .category-actions {
+        	width: 20%;
+        }
+    </style>
 
 	<template>
 		<iron-ajax url="{{dataLink}}" last-response={{data}} auto on-response="handleAJAX"></iron-ajax>
 
-		<template is="dom-if" if="{{ noContributor }}">
+		<template is="dom-if" if="{{ noCategory }}">
 		    <p>{{emptyMessage}}</p>
 		</template>
 
 		<iron-list items="[[data]]" as="item">
 			<template>
-                <h1>Category List</h1>
+                <div class="item">
+					<paper-material elevation="1" class="category-card">
+						<aside class="category-actions">
+							<ul class="actions">
+							    <li class="title">Actions</li>
+							    <li>
+							    	<a href="[[item.EditLink]]">
+							    		<span class="action-icon">
+									    	<iron-icon icon="editor:mode-edit"></iron-icon>
+								    	</span>
+
+								    	<span class="action-text">
+									    	Edit
+								    	</span>
+							    	</a>
+							    </li>
+						    </ul>
+					    </aside>
+						<section class="category-info">
+							<h3>[[item.Heading]]</h3>
+							<p>[[item.Description]]</p>
+						</section>
+					</paper-material>
+                </div>
 			</template>
 		</iron-list>
 	</template>
@@ -31,9 +111,9 @@
 			emptyMessage: String
 		},
 		handleAJAX: function (request) {
-			var contributorCount = request.detail.parseResponse().length;
+			var categoryCount = request.detail.parseResponse().length;
 
-			this.noContributor = contributorCount === 0;
+			this.noCategory = categoryCount === 0;
 		}
 	});
 	</script>
