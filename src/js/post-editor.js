@@ -15,7 +15,9 @@ import * as OS from "./obrolansubuh"
 					let text = value["Heading"] + " - " + value["Description"];
 
 					category.options[category.options.length] = new Option(text, value["ID"]);
-					category.value = oldCat.value;
+					if (oldCat) {
+						category.value = oldCat.value;
+					}
 				});
 			},
 			error       : (jqXHR, textStatus, errorThrown) => {
