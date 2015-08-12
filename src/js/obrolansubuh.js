@@ -24,3 +24,38 @@ export class ToastNotification {
 		setTimeout(() => { this.notif.show(); }, 500);
 	}
 }
+
+export class CommonClosures {
+    static FileUploadHandler({
+        FileInputElem:  fileInput, 
+        OnError:        onError,
+        OnSuccess:      onSuccess,
+        OnFailure:      onFailure
+    }) {
+        return function (event) {
+            let file  = fileInput.files[0]; // user may only select one file!
+            let formD = new FormData();
+
+            if (!file.type.match("image*")) {
+                return onError();
+            }
+
+            if (file) {
+                formD.append('image', file, file.name);
+                
+                $.ajax({
+                    url: "/assets/image/upload",
+                    type: "PUT",
+                    data: formD,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) { onSuccess(response); },
+                    error: function (jqXHR, textStatus, errorMessage) {
+                        onFailure(jqXHR, textStatus, errorMessage);
+                    }
+                });
+            }
+        }
+    }
+}

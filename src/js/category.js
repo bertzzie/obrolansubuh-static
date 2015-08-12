@@ -129,57 +129,42 @@ import * as OS from "./obrolansubuh"
 		})
 	}
 
-	catImage.addEventListener("change", function (evt) {
-		let file  = catImage.files[0]; // user may only select one file!
-		let formD = new FormData();
+	catImage.addEventListener("change", OS.CommonClosures.FileUploadHandler({
+		FileInputElem:  catImage, 
+		OnError: function () {
+            let ToastNotif = new OS.ToastNotification(
+                document.querySelector("#flash-container"),
+                "You must upload image file!", // TODO: Internationalization from client side
+                5000,
+                true
+            );
 
-		if (!file.type.match("image*")) {
-			let ToastNotif = new OS.ToastNotification(
-				document.querySelector("#flash-container"),
-				"You must upload image file!", // TODO: Internationalization from client side
-				5000,
-				true
-			);
+            ToastNotif.Show();
+            return;
+		},
+		OnSuccess: function (response) {
+            // can only upload 1 file. download will only be 1 file
+            let url = response["files"][0]["url"];
+            let imageContainer = document.querySelector("#category-image-container");
 
-			ToastNotif.Show();
-			return;
-		}
+            imageURL = url;
 
-		if (file) {
-			formD.append('image', file, file.name);
-			
-			$.ajax({
-				url: "/assets/image/upload",
-				type: "PUT",
-				data: formD,
-				cache: false,
-				contentType: false,
-				processData: false,
-				success: function (response) {
-					// can only upload 1 file. download will only be 1 file
-					let url = response["files"][0]["url"];
-					let cic = document.querySelector("#category-image-container");
+            // The background-image string concat is not safe, but this is javascript. 
+            // So, what's safety anyway?
+            //
+            // TODO: Find a safer way to do this
+            imageContainer.style["background-image"]    = "url(" + url + ")";
+        },
+        OnFailure: function (jqXHR, textStatus, errorMessage) {
+            let error = jqXHR.responseJSON["files"][0];
+            let ToastNotif = new OS.ToastNotification(
+                document.querySelector("#flash-container"),
+                error["error"],
+                5000,
+                true
+            );
 
-					imageURL = url;
-
-					// The background-image string concat is not safe, but this is javascript. 
-					// So, what's safety anyway?
-					//
-					// TODO: Find a safer way to do this
-					cic.style["background-image"]    = "url(" + url + ")";
-				},
-				error: function (jqXHR, textStatus, errorMessage) {
-					let error = jqXHR.responseJSON["files"][0];
-					let ToastNotif = new OS.ToastNotification(
-						document.querySelector("#flash-container"),
-						error["error"],
-						5000,
-						true
-					);
-
-					ToastNotif.Show();
-				}
-			});
-		}
-	});
+            ToastNotif.Show();
+        }
+	}));
 })();
