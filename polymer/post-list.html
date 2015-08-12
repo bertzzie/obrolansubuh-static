@@ -101,6 +101,10 @@
         	content: "by: ";
         }
 
+        .post-category:before {
+        	content: "posted in: ";
+        }
+
         .post-content {
         	width: 75%;
         	height: 100%;
@@ -123,10 +127,64 @@
         	line-height: 1.75em;
         	min-height: 95px;
         }
+
+        .filter-items {
+        	display: flex;
+        	display: -webkit-flex;
+        	justify-content: space-between;
+        	-webkit-justify-content: space-between;
+        }
+
+        .filter-option {
+        	margin: 0.5em auto;
+        	width: 45%;
+        }
+
+        .filter-option label {
+        	display: block;
+        	font-size: 0.8em;
+        	margin-bottom: 0.5em;
+        	width: 30%;
+        }
+
+        .filter-option select {
+        }
     </style>
 
 	<template>
-		<iron-ajax url="{{dataLink}}" last-response={{data}} auto on-response="handleAJAX"></iron-ajax>
+		<iron-ajax 
+			id="postListAJAX"
+			url="{{getFullDataLink(dataLink)}}" 
+			last-response={{data}} 
+			auto 
+			on-response="handlePostListAJAX"></iron-ajax>
+
+		<iron-ajax 
+			id="catListAJAX"
+			url="/category/list.json" 
+			auto 
+			on-response="handleCategoryListAJAX"></iron-ajax>
+
+		<section id="filter">
+			<h3>Filters</h3>
+			<section class="filter-items">
+				<div class="filter-option">
+					<label for="category-filter">Category</label>
+					<select name="category-filter" id="category-filter" on-change="filterChanged">
+						<option value="0">All Categories</option>
+					</select>
+				</div>
+
+				<div class="filter-option">
+					<label for="published-filter">Publication Status</label>
+					<select name="published-filter" id="published-filter" on-change="filterChanged">
+						<option value="all">Published + Not Published</option>
+						<option value="true">Published Only</option>
+						<option value="false">Unpublished Only</option>
+					</select>
+				</div>
+			</section>
+		</section>
 
 		<template is="dom-if" if="{{ noPost }}">
 		    <p>{{emptyMessage}}</p>
@@ -176,6 +234,7 @@
 
 						<article class="post-content">
 						    <h3>[[item.Title]]</h3>
+							<span class="post-category">{{ item.Category }}</span>
 						    <p>[[getFirstParagraph(item.Content)]]</p>
 						</article>
 					</paper-material>
@@ -196,10 +255,26 @@
 			dataLink: String,
 			emptyMessage: String
 		},
-		handleAJAX: function (request) {
+		handlePostListAJAX: function (request) {
 			var postCount = request.detail.parseResponse().length;
 
 			this.noPost = postCount === 0;
+		},
+		handleCategoryListAJAX: function (request) {
+			var categories = request.detail.parseResponse(),
+			    catFilter  = document.querySelector("select#category-filter");
+			
+		    categories.forEach(function (value, index, array) {
+		    	var text = value["Heading"] + " - " + value["Description"];
+
+		    	catFilter.options[catFilter.options.length] = new Option(text, value["ID"]);
+		    });
+		},
+		filterChanged: function (e) {
+			var category = document.querySelector("select#category-filter").value;
+			var published = document.querySelector("select#published-filter").value;
+
+			this.$.postListAJAX.url = this.getFullDataLink(this.dataLink, published, category);
 		},
 		publishClicked: function (e) {
 			e.preventDefault();
@@ -289,7 +364,23 @@
 	    	parentElement.appendChild(notif);
 
 	    	return notif;
-		}
+		},
+		getFullDataLink: function (dataLink, published, category) {
+			published = published || "all";
+			category  = category  || 0;
+
+			var data  = {"published": published, "category": category};
+
+			return dataLink + "?" + this.serializeURLData(data);
+		},
+		// This might be useful as a general purpose tools.
+		// TODO: Figure out how to use babel with Polymer so
+		//       we can move this to an object.
+		serializeURLData: function (data) {
+			return Object.keys(data).map(function(key) {
+				return [key, data[key]].map(encodeURIComponent).join("=");
+			}).join("&");
+		}   
 	});
 	</script>
 </dom-module>
