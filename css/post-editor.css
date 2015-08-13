@@ -1,12 +1,46 @@
 @import url(//fonts.googleapis.com/css?family=EB+Garamond|PT+Sans+Caption:700);
 
-input#post-title, .title {
+#main-container #mainContainer {
+	padding: 0;
+}
+
+#cover-image-container {
+	cursor: pointer;
+	color: rgba(128, 128, 128, 0.5);
+	text-align: center;
+}
+
+#post-creator #post-heading {
+	padding: 0;
+}
+
+#post-heading {
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 320px;
+
+	display: flex;
+	display: -webkit-flex;
+
+	flex-direction: column;
+	-webkit-flex-direction: column;
+
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+}
+
+.title {
 	border: 0;
 	font-family: 'PT Sans Caption', sans-serif;
 	font-size: 2em;
 	height: 1.5em;
-	padding: 5px;
 	width: 100%;
+}
+
+input#post-title {
+	background: rgba(0, 0, 0, 0.15);
+	color: #FFF;
+	padding: 5px 15vw;
 }
 
 input#post-title:focus, .title:focus {
@@ -15,8 +49,15 @@ input#post-title:focus, .title:focus {
 
 #post-creator, #aboutus-creator {
 	height: 100%;
-	max-width: 70%;
 	margin: 0 auto;
+}
+
+#post-creator > *, #aboutus-creator > * {
+	padding: 0 15vw;
+}
+
+#aboutus-creator {
+	padding-top: 4em;
 }
 
 #category-wrapper {
@@ -29,9 +70,14 @@ input#post-title:focus, .title:focus {
 }
 
 medium-editor-polymer {
+	display: block;
 	font-family: 'EB Garamond', serif;
 	font-size: 1.25em;
 	line-height: 1.5em;
+}
+
+medium-editor-polymer #medium-editor {
+	height: inherit;
 }
 
 medium-editor-polymer blockquote {

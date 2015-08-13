@@ -53,6 +53,46 @@ import * as OS from "./obrolansubuh"
 		})
 	});
 
+	var coverImage = document.querySelector("#cover-image");
+	coverImage.addEventListener("change", OS.CommonClosures.FileUploadHandler({
+		FileInputElem: coverImage,
+		OnError: function () {
+            let ToastNotif = new OS.ToastNotification(
+                document.querySelector("#flash-container"),
+                "You must upload image file!", // TODO: Internationalization from client side
+                5000,
+                true
+            );
+
+            ToastNotif.Show();
+            return;
+		},
+		OnSuccess: function (response) {
+            // can only upload 1 file. download will only be 1 file
+            let url = response["files"][0]["url"];
+            let imageContainer = document.querySelector("#post-heading");
+            let imageURLValue  = document.querySelector("#cover-image-url");
+
+            // The background-image string concat is not safe, but this is javascript. 
+            // So, what's safety anyway?
+            //
+            // TODO: Find a safer way to do this
+            imageContainer.style["background-image"]    = "url(" + url + ")";
+            imageURLValue.value = url;
+		},
+		OnFailure: function (jqXHR, textStatus, errorMessage) {
+            let error = jqXHR.responseJSON["files"][0];
+            let ToastNotif = new OS.ToastNotification(
+                document.querySelector("#flash-container"),
+                error["error"],
+                5000,
+                true
+            );
+
+            ToastNotif.Show();
+		}
+	}));
+
 	var postEditor = document.querySelector("#post-editor");
 	postEditor.addEventListener("image-upload-failed", function (evt) {
 		// This comes from the plugin we use. Event data is exposed 
@@ -77,8 +117,10 @@ import * as OS from "./obrolansubuh"
 	var publishButton = document.querySelector("#publish-post");
 	if (publishButton) {
 		publishButton.addEventListener("click", CreatePostSubmitListener(
+			document.querySelector("#cover-image-url"),
 			document.querySelector("input#post-title"),
 			document.querySelector("#post-editor"),
+			document.querySelector("select#post-category"),
 			true
 		));
 	}
@@ -86,6 +128,7 @@ import * as OS from "./obrolansubuh"
 	var draftButton = document.querySelector("#save-draft");
 	if (draftButton) {
 		draftButton.addEventListener("click", CreatePostSubmitListener(
+			document.querySelector("#cover-image-url"),
 			document.querySelector("input#post-title"),
 			document.querySelector("#post-editor"),
 			document.querySelector("select#post-category"),
@@ -96,6 +139,7 @@ import * as OS from "./obrolansubuh"
 	var updateButton = document.querySelector("#update-post");
 	if (updateButton) {
 		updateButton.addEventListener("click", CreatePutSubmitListener(
+			document.querySelector("#cover-image-url"),
 			document.querySelector("input#post-title"),
 			document.querySelector("#post-editor"),
 			document.querySelector("input#post-id"),
@@ -104,7 +148,7 @@ import * as OS from "./obrolansubuh"
 		));
 	}
 
-	function CreatePutSubmitListener(titleElem, editorElem, idElem, catElem, publish) {
+	function CreatePutSubmitListener(imageElem, titleElem, editorElem, idElem, catElem, publish) {
 		return (evt) => {
 			var id = idElem.value,
 				data = {
@@ -112,7 +156,8 @@ import * as OS from "./obrolansubuh"
 					title     : titleElem.value,
 					content   : editorElem.getEditorContent(),
 					category  : catElem.value,
-					published : publish === "true"
+					published : publish === "true",
+					cover     : imageElem.value
 				}, 
 				parent = document.querySelector("#flash-container"),
 				ToastNotif;
@@ -138,13 +183,14 @@ import * as OS from "./obrolansubuh"
 		}
 	}
 
-	function CreatePostSubmitListener(titleElem, editorElem, catElem, publish) {
+	function CreatePostSubmitListener(imageElem, titleElem, editorElem, catElem, publish) {
 		return (evt) => {
 			var postData = {
-				title   : titleElem.value,
+				title     : titleElem.value,
 				category  : catElem.value,
-				content : editorElem.getEditorContent(),
-				publish : publish
+				content   : editorElem.getEditorContent(),
+				publish   : publish,
+				cover     : imageElem.value
 			}, ToastNotif;
 
 			$.post("/post/new", postData, (data, textStatus, jqXHR) => {
