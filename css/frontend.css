@@ -1,0 +1,39 @@
+@import url(//fonts.googleapis.com/css?family=EB+Garamond|PT+Sans+Caption:700);
+
+html, body {
+	height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+section#landing {
+	height: 100vh;
+	width: 100vw;
+}
+
+article.slideshow {
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	box-shadow: 0 8px 6px 0px black;
+
+	color: #FFF;
+
+	height: 100%;
+	width: 100%;
+}
+
+article.slideshow header {
+	background: rgba(0, 0, 0, 0.25);
+	top: 75vh;
+
+	position: relative;
+
+	padding-bottom: 1em;
+	padding-left: 10vw;
+	padding-top: 1em;
+}
