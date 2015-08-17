@@ -107,6 +107,19 @@ section.page-content {
 	padding: 0 15vw;
 }
 
+#post-heading {
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 320px;
+}
+
+#post-heading .title {
+	background: rgba(0, 0, 0, 0.15);
+	color: #FFF;
+	position: relative;
+	top: 272px;
+}
+
 .title {
 	border: 0;
 	font-family: 'PT Sans Caption', sans-serif;
@@ -152,4 +165,38 @@ article.post blockquote {
 	font-style: italic;
 	transition: margin 100ms;
 }
+
+article.post .medium-insert-embeds-full-left-caption figure,
+article.post .medium-insert-images-full-left-caption figure {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+article.post .medium-insert-embeds-flc figure figcaption:before,
+article.post .medium-insert-images-flc figure figcaption:before {
+    border-top: 1px solid rgba(0, 0, 0, 0.75);
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 70%;
+    width: 30%;
+}
+
+article.post .medium-insert-embeds-flc figure figcaption:after,
+article.post .medium-insert-images-flc figure figcaption:after {
+    margin-top: 10px;
+    text-align: right;
+}
+
+article.post .medium-insert-embeds-flc figure figcaption,
+article.post .medium-insert-images-flc figure figcaption {
+    color: #B1B1B1;
+    left: -200px;
+    top: 0;
+    position: absolute;
+    text-align: right;
+    width: 185px;
+}
+
 /* POST - END */
