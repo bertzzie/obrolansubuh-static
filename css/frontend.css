@@ -1,6 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=EB+Garamond|PT+Sans+Caption:700);
 
 html, body {
+	font-size: 16px;
 	height: 100vh;
 }
 
@@ -12,12 +13,16 @@ a {
 	text-decoration: none;
 }
 
-header#page-header {
+/* LANDING PAGE */
+header#page-header.landing-header {
 	color: white;
-	padding: 1em 5vw;
-	position: fixed;
+	position: absolute;
 	top: 0;
-	width: 100%;
+}
+
+header#page-header {
+	color: #3F51B5;
+	padding: 1em 5vw;
 }
 
 #page-title {
@@ -94,3 +99,57 @@ article.slideshow header {
 article.slideshow a {
 	color: white;
 }
+/* LANDING PAGE - END */
+
+/* POST (post view, about us) */
+section.page-content {
+	margin-top: 7vh;
+	padding: 0 15vw;
+}
+
+.title {
+	border: 0;
+	font-family: 'PT Sans Caption', sans-serif;
+	font-size: 2em;
+	height: 1.5em;
+	text-align: center;
+	width: 100%;
+}
+
+article.post {
+	display: block;
+	font-family: 'EB Garamond', serif;
+	font-size: 1.25em;
+	line-height: 1.5em;
+}
+
+article.post h1, h2, h3, h4, h5, h6, p, blockquote {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+article.post h1, h2, h3, h4, h5, h6 {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
+article.post blockquote:before,
+article.post blockquote:after {
+	content: "";
+	margin: 0;
+}
+
+article.post blockquote {
+	line-height: 1.4;
+	text-align: center;
+	font-size: 32px;
+	margin: 48px -160px;
+	border: none;
+	padding: 0;
+	letter-spacing: .01rem;
+	font-weight: 400;
+	font-style: italic;
+	transition: margin 100ms;
+}
+/* POST - END */
