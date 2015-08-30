@@ -13,6 +13,14 @@ a {
 	text-decoration: none;
 }
 
+section.page-content {
+	font-family: 'EB Garamond', serif;
+	font-size: 1.25em;
+	line-height: 1.5em;
+	margin-top: 7vh;
+	padding: 0 15vw;
+}
+
 /* LANDING PAGE */
 header#page-header.landing-header {
 	color: white;
@@ -101,12 +109,40 @@ article.slideshow a {
 }
 /* LANDING PAGE - END */
 
-/* POST (post view, about us) */
-section.page-content {
-	margin-top: 7vh;
-	padding: 0 15vw;
+/* WRITERS PAGE */
+#writers-profile {
+	display: flex;
+	display: -webkit-flex;
 }
 
+.writer-profile {
+	margin: 2em;
+}
+
+.writer-profile > .mdl-card__title,
+.writer-profile > .mdl-card__supporting-text {
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-weight: 400;
+}
+
+.writer-profile > .mdl-card__title {
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.writer-photo {
+	height: 64px;
+	margin: 0;
+	width: 64px;
+}
+
+.writer-photo img {
+	height: 100%;
+	width: 100%;
+}
+/* WRITERS PAGE - END */
+
+/* POST (post view, about us) */
 #post-heading {
 	background-position: center;
 	background-repeat: no-repeat;
@@ -132,8 +168,6 @@ section.page-content {
 article.post {
 	display: block;
 	font-family: 'EB Garamond', serif;
-	font-size: 1.25em;
-	line-height: 1.5em;
 }
 
 article.post h1, h2, h3, h4, h5, h6, p, blockquote {
@@ -198,5 +232,14 @@ article.post .medium-insert-images-flc figure figcaption {
     text-align: right;
     width: 185px;
 }
-
 /* POST - END */
+
+/* POST LIST */
+.page-content .post {
+	margin: 2em auto;
+}
+
+.page-content .post .title {
+	text-align: left;
+}
+/* POST LIST - END */
