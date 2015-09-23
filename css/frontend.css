@@ -21,13 +21,7 @@ section.page-content {
 	padding: 0 15vw;
 }
 
-/* LANDING PAGE */
-header#page-header.landing-header {
-	color: white;
-	position: absolute;
-	top: 0;
-}
-
+/* HEADER */
 header#page-header {
 	color: #3F51B5;
 	padding: 1em 5vw;
@@ -61,6 +55,14 @@ nav#main-nav {
 
 #main-nav a {
 	font-size: 1.1em;
+}
+/* HEADER - END */
+
+/* LANDING PAGE */
+header#page-header.landing-header {
+	color: white;
+	position: absolute;
+	top: 0;
 }
 
 section#landing {
@@ -257,6 +259,69 @@ article.post .medium-insert-images-flc figure figcaption {
 }
 
 .page-content .post .title {
+	font-size: 1.5em;
+	margin: 1em 0;
 	text-align: left;
+}
+
+.info {
+	color: rgba(0,0,0,0.4);
+	font-size: 0.85em;
+}
+
+.info > div {
+	display: inline-block;
+}
+
+.info .author-pic {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	display: inline-block;
+	height: 36px;
+	margin: 0;
+	width: 36px;
+}
+
+.info a.author-name {
+	color: #3F51B5;
+	font-weight: bold;
+}
+
+.data a {
+	color: rgba(0,0,0,0.4);
+	display: block;
+	line-height: 1.15em;
+	margin: 0 0.5em;
+}
+
+.date {
+	float: right;
+}
+
+.pagination {
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+}
+
+.pagination li {
+	display: inline-block;
+	margin: 2em 1em;
+}
+
+.pagination .disabled a {
+	color: rgba(0,0,0,0.3);
+}
+
+.pagination .menu a {
+	color: #000;
+}
+
+.pagination .disabled a,
+.pagination .menu a {
+	pointer-events: none;
 }
 /* POST LIST - END */

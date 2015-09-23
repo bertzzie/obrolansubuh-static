@@ -1,4 +1,5 @@
 @media all and (max-width: 480px) {
+	/* HEADER */
 	#page-header #page-title,
 	#page-header #main-nav {
 		width: 100%;
@@ -13,10 +14,16 @@
 		text-align: center;
 	}
 
+	#main-nav li {
+		margin: 0 1em;
+	}
+
 	#main-nav a {
 		font-size: 1em;
 	}
+	/* HEADER - END */
 
+	/* LANDING PAGE */
 	article.landing-slide h1{
 	font-size: 5vw;
 	}
@@ -24,4 +31,14 @@
 	article.landing-slide p {
 		font-size: 3.5vw;
 	}
+	/* LANDING PAGE - END */
+
+	/* POST LIST */
+	.date {
+		width: 100%;
+		text-align: left;
+		margin-left: 48px; /* Post photo size + little margin */
+		float: none;
+	}
+	/* POST LIST - END */
 }
