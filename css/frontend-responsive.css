@@ -1,0 +1,27 @@
+@media all and (max-width: 480px) {
+	#page-header #page-title,
+	#page-header #main-nav {
+		width: 100%;
+	}
+
+	#page-title {
+		text-align: center;
+		margin: 0.25em auto;
+	}
+
+	#main-nav {
+		text-align: center;
+	}
+
+	#main-nav a {
+		font-size: 1em;
+	}
+
+	article.landing-slide h1{
+	font-size: 5vw;
+	}
+
+	article.landing-slide p {
+		font-size: 3.5vw;
+	}
+}
