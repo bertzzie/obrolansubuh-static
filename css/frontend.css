@@ -152,14 +152,16 @@ article.slideshow a {
 }
 
 .writer-photo {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	display: block;
+	height: 64px;
 	margin: 0;
 	width: 64px;
 }
 
-.writer-photo img {
-	height: 100%;
-	width: 100%;
-}
 /* WRITERS PAGE - END */
 
 /* POST (post view, about us) */
