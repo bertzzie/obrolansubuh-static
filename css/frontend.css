@@ -93,6 +93,15 @@ article.slideshow header {
 	top: 75vh;
 }
 
+article.landing-slide h1,
+article.slideshow h1 {
+	font-size: 4vw;
+}
+
+article.landing-slide p {
+	font-size: 2vw;
+}
+
 article.slideshow header {
 	display: flex;
 	display: -webkit-flex;
@@ -113,10 +122,20 @@ article.slideshow a {
 #writers-profile {
 	display: flex;
 	display: -webkit-flex;
+
+	align-items: center;
+	-webkit-align-items: center;
+
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+
+	justify-content: center;
+	-webkit-justify-content: center;
 }
 
 .writer-profile {
-	margin: 2em;
+	margin: 1.5em;
+	min-width: 1vw;
 }
 
 .writer-profile > .mdl-card__title,
@@ -131,7 +150,6 @@ article.slideshow a {
 }
 
 .writer-photo {
-	height: 64px;
 	margin: 0;
 	width: 64px;
 }
@@ -160,7 +178,6 @@ article.slideshow a {
 	border: 0;
 	font-family: 'PT Sans Caption', sans-serif;
 	font-size: 2em;
-	height: 1.5em;
 	text-align: center;
 	width: 100%;
 }
