@@ -327,3 +327,80 @@ article.post .medium-insert-images-flc figure figcaption {
 	pointer-events: none;
 }
 /* POST LIST - END */
+
+/* WRITER'S PROFILE */
+.writer-profile {
+	text-align: center;
+}
+
+.writer-profile figure {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	display: block;
+	height: 96px;
+	margin: 1em auto;
+	width: 96px;
+}
+
+.writer-profile h2 {
+	font-size: 1.75em;
+	margin: 0.75em auto;
+}
+
+.writer-profile p {
+	font-size: 1.25em;
+}
+
+div.seperator {
+	line-height: 1;
+	margin: 2em;
+	position: relative;
+	text-align: center;
+}
+
+div.seperator::before {
+	border-top: 1px solid rgba(0, 0, 0, 0.15);
+	content: "";
+	display: block;
+	position: absolute;
+	top: 11px;
+	width: 100%;
+	z-index: -1;
+}
+
+div.seperator span {
+	background: #FFF none repeat scroll 0% 0%;
+	border: 1px solid rgba(0,0,0,0.25);
+	color: rgba(0,0,0,0.75);
+	display: inline-block;
+	font-variant: small-caps;
+	padding: 4px;
+	width: 320px;
+}
+/* WRITER'S PROFILE - END */
+
+/* CATEGORY'S PROFILE */
+.category-profile {
+	text-align: center;
+}
+
+.category-profile figure {
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: block;
+	height: 320px;
+	margin: 0;
+}
+
+.category-profile h2 {
+	font-size: 1.75em;
+	margin: 0.75em auto;
+}
+
+.category-profile p {
+	font-size: 1.25em;
+}
+
+/* CATEGORY'S PROFILE - END */
