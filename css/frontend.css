@@ -415,3 +415,39 @@ section#page-comment h2 {
 	text-align: center;
 }
 /* DISQUS - END */
+
+/* POST ACTIONS */
+#page-actions {
+	background: #FFF;
+	border-left: 1px solid rgba(0,0,0,0.1);
+	border-right: 1px solid rgba(0,0,0,0.1);
+	border-top: 1px solid rgba(0,0,0,0.1);
+	border-radius: 5px;
+
+	display: flex;
+	display: -webkit-flex;
+
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+
+	bottom: 0;
+	height: 52px;
+	position: fixed;
+	width: 65vw;
+	left: 15vw;
+
+	padding: 3px 30px;
+}
+
+#page-actions .action, #page-actions a {
+	align-items: center;
+	-webkit-align-items: center;
+
+	display: flex;
+	display: -webkit-flex;
+}
+
+#page-actions a {
+	color: rgba(0,0,0,0.87);
+}
+/* POST ACTIONS - END */
