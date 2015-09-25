@@ -451,3 +451,35 @@ section#page-comment h2 {
 	color: rgba(0,0,0,0.87);
 }
 /* POST ACTIONS - END */
+
+/* POST AUTHOR */
+.post-author {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	border-top: 1px solid rgba(0,0,0,0.1);
+
+	display: flex;
+	display: -webkit-flex;
+
+	margin: 0 auto;
+	padding: 1.5em 0;
+	width: 70vw;
+}
+
+.post-author figure {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	height: 64px;
+	margin: 0 15px;
+	width: 64px;
+}
+
+.post-author .author-name {
+	color: rgba(0,0,0,0.87);
+	display: inline-block;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 5px 0;
+}
+/* POST AUTHOR - END */
