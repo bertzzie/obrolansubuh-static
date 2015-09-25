@@ -402,5 +402,16 @@ div.seperator span {
 .category-profile p {
 	font-size: 1.25em;
 }
-
 /* CATEGORY'S PROFILE - END */
+
+/* DISQUS */
+section#page-comment {
+	margin-top: 7vh;
+	padding: 0 15vw;
+}
+
+section#page-comment h2 {
+	margin: 3vh auto;
+	text-align: center;
+}
+/* DISQUS - END */
