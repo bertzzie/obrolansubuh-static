@@ -7,7 +7,10 @@ var gulp       = require("gulp"),
     watchify   = require("watchify"),
     es         = require("event-stream"),
     glob       = require("glob"),
-    path       = require("path");
+    path       = require("path"),
+    concat     = require("gulp-concat"),
+    minifyCSS  = require("gulp-minify-css"),
+    rename     = require("gulp-rename");
 
 var JS_SOURCE_DIR = "./src/js/";
 
@@ -54,6 +57,18 @@ function compileJS(watch, done) {
 gulp.task("javascript", function (done) {
 	return compileJS(false, done);
 })
+
+gulp.task("css", function () {
+	gulp.src(["css/normalize.css", "css/frontend.css", "css/frontend-responsive.css"])
+	    .pipe(minifyCSS())
+	    .pipe(concat("obrolansubuh-frontend.min.css"))
+	    .pipe(gulp.dest("dist/css"));
+
+	gulp.src("./libs/animateit/animateit.css")
+	    .pipe(minifyCSS())
+	    .pipe(rename("animateit.min.css"))
+	    .pipe(gulp.dest("./dist/css"));
+});
 
 gulp.task("watch", function (done) {
 	return compileJS(true, done);
